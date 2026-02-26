@@ -10,7 +10,7 @@
 
 - 支持使用 `/自拍` 命令生成Bot自拍
 - 支持自然语言理解，当用户提到"自拍"、"来张自拍"等关键词时自动生成
-- 自动从 `astrbot_plugin_life_scheduler` 插件获取今日穿搭作为提示词（强关联astrbot_plugin_life_scheduler插件）
+- 自动从 `astrbot_plugin_life_scheduler` 插件获取今日穿搭作为提示词（强关联astrbot_plugin_life_scheduler插件，问就是懒）
 - 支持本地存储Bot人设参考图
 - 支持豆包API轮询池
 - 支持配置化：API基础URL、图生图分辨率等
@@ -73,6 +73,7 @@
 - **无法获取今日穿搭**：检查 `astrbot_plugin_life_scheduler` 插件是否已安装并正常运行
 - **API调用失败**：检查API密钥是否正确，网络连接是否正常
 - **生成的图像不符合预期**：调整提示词或更换人设参考图
+
 
 
 
