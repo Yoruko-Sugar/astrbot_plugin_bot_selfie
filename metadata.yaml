@@ -1,0 +1,13 @@
+name: astrbot_plugin_bot_selfie
+version: 1.0.0
+description: 基于每日穿搭生成Bot自拍照片的插件
+author: Your Name
+email: your.email@example.com
+homepage: https://github.com/yourusername/astrbot_plugin_bot_selfie
+license: MIT
+keywords:
+  - selfie
+  - image generation
+  - doubao
+  - daily outfit
+  - bot persona

@@ -1,0 +1,170 @@
+{
+  "api_settings": {
+    "description": "API 设置",
+    "type": "object",
+    "items": {
+      "provider_id": {
+        "description": "生图模型提供商（可选）",
+        "type": "string",
+        "hint": "从 AstrBot 提供商列表中选择，插件自动读取模型/密钥/端点；不选将无法调用",
+        "_special": "select_provider",
+        "default": ""
+      },
+      "api_type": {
+        "description": "API 类型（必选）",
+        "type": "string",
+        "hint": "必须选择 API 类型（doubao）",
+        "default": "doubao",
+        "options": ["doubao"]
+      },
+      "model": {
+        "description": "模型名称（可选）",
+        "type": "string",
+        "hint": "如需覆盖 AstrBot 提供商的模型，可在此填写",
+        "default": ""
+      },
+      "provider_overrides": {
+        "description": "供应商配置覆盖（和上面的供应商2选一）",
+        "type": "template_list",
+        "hint": "覆盖特定 API 类型的配置（多 Key 轮换、每日限额等），优先于 AstrBot 提供商配置",
+        "default": [],
+        "templates": {
+          "doubao": {
+            "description": "豆包 API 覆盖配置",
+            "hint": "配置豆包专用的多 Key 轮换和每日限额",
+            "__template_key": "doubao",
+            "items": {
+              "api_keys": {
+                "description": "API Key 列表",
+                "type": "list",
+                "hint": "多个 API Key，支持轮换使用",
+                "default": []
+              },
+              "daily_limit_per_key": {
+                "description": "每个 Key 每日限额",
+                "type": "int",
+                "hint": "每个 API Key 每日最大调用次数，0 表示不限制",
+                "default": 0
+              },
+              "endpoint_id": {
+                "description": "Endpoint/Model ID",
+                "type": "string",
+                "hint": "Ark Images API 的 model 字段",
+                "default": "doubao-seedream-4-5-251128"
+              },
+              "api_base": {
+                "description": "API 端点地址",
+                "type": "string",
+                "hint": "火山引擎 Ark API 地址",
+                "default": "https://ark.cn-beijing.volces.com"
+              },
+              "default_size": {
+                "description": "默认尺寸",
+                "type": "string",
+                "hint": "默认生成图片尺寸",
+                "default": "2K",
+                "options": ["2K", "4K"]
+              },
+              "watermark": {
+                "description": "添加水印",
+                "type": "bool",
+                "hint": "是否在图片右下角添加'AI生成'水印",
+                "default": false
+              },
+              "optimize_prompt_mode": {
+                "description": "提示词优化模式",
+                "type": "string",
+                "hint": "standard：质量更高；fast：速度更快",
+                "default": "standard",
+                "options": ["standard", "fast"]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "image_generation_settings": {
+    "description": "图像生成参数",
+    "type": "object",
+    "items": {
+      "resolution": {
+        "description": "图像分辨率",
+        "type": "string",
+        "hint": "生成图像的分辨率",
+        "default": "1K",
+        "options": ["1K", "2K", "4K"]
+      },
+      "aspect_ratio": {
+        "description": "长宽比",
+        "type": "string",
+        "hint": "图像的长宽比例",
+        "default": "1:1",
+        "options": ["1:1", "16:9", "4:3", "3:2", "9:16"]
+      }
+    }
+  },
+  "persona_settings": {
+    "description": "Bot人设相关设置",
+    "type": "object",
+    "items": {
+      "persona_reference_image": {
+        "description": "本地存储的Bot人设参考图",
+        "type": "file",
+        "hint": "选择一张清晰的Bot人设参考图",
+        "default": [],
+        "file_types": ["jpg", "jpeg", "png", "webp"]
+      },
+      "enable_auto_outfit": {
+        "description": "是否自动从life_scheduler插件获取今日穿搭",
+        "type": "bool",
+        "default": true
+      }
+    }
+  },
+  "retry_settings": {
+    "description": "重试设置",
+    "type": "object",
+    "items": {
+      "max_attempts_per_key": {
+        "description": "每个 API 密钥的最大重试次数",
+        "type": "int",
+        "hint": "当 API 请求失败时，每个密钥最多重试几次。设置为1表示不重试，直接切换密钥。推荐2-5次",
+        "default": 3
+      },
+      "enable_smart_retry": {
+        "description": "启用智能重试（区分错误类型）",
+        "type": "bool",
+        "hint": "启用后会对不同错误类型采用不同策略：额度/速率限制直接切换密钥，网络错误进行重试",
+        "default": true
+      },
+      "total_timeout": {
+        "description": "总超时时间",
+        "type": "int",
+        "hint": "单次 API 调用的总超时时间（秒）。建议根据网络状况和服务质量调整，过短可能导致频繁超时",
+        "default": 120
+      }
+    }
+  },
+  "rate_limit_settings": {
+    "description": "API调用限流设置",
+    "type": "object",
+    "items": {
+      "enabled": {
+        "description": "是否启用API调用限流",
+        "type": "bool",
+        "default": true
+      },
+      "max_requests": {
+        "description": "单位时间内的最大请求数",
+        "type": "int",
+        "default": 5
+      },
+      "period_seconds": {
+        "description": "限流的时间窗口（秒）",
+        "type": "int",
+        "default": 60
+      }
+    }
+  }
+}
