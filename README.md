@@ -75,6 +75,13 @@
 - **API调用失败**：检查API密钥是否正确，网络连接是否正常
 - **生成的图像不符合预期**：调整提示词或更换人设参考图
 
+## 效果演示
+<img width="981" height="884" alt="image" src="https://github.com/user-attachments/assets/9b1b789e-beec-4bc3-a117-a7eb8d2473eb" />
+<img width="729" height="1100" alt="image" src="https://github.com/user-attachments/assets/9258ec0e-3b32-49a3-8d3d-96047df92ca2" />
+
+
+
+
 
 
 
